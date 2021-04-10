@@ -18,12 +18,12 @@
                     <ComboBoxItem Content="Работодатели/партнёры"/>
                 </ComboBox>
                 <Button Name="BtnLoad" Content="Загрузить Базу" Width="Auto" Height="30" Margin="30,0,0,0" IsEnabled="False" Click="BtnLoad_Click"/>
+                <Button x:Name="BtnImportCSV" Width="100" Margin="30,10,20,10" Height ="30" Content="Импорт из .CSV" Click="BtnImportCSV_Click"  />
             </StackPanel>
             <StackPanel Name="For_ActionBtns" Height="50" Orientation="Horizontal" VerticalAlignment="Center" Visibility="Collapsed">
-                <Button Name="Action_1" Width="100" Margin="0,0,20,0" Height ="30" Content="Действие 1"/>
-                <Button Name="Action_2" Width="100" Margin="0,0,20,0" Height ="30" Content="Действие 2"/>
-                <Button Name="Action_3" Width="100" Margin="0,0,20,0" Height ="30" Content="Действие 3"/>
-                <Button Name="Action_4" Width="100" Margin="0,0,20,0" Height ="30" Content="Внести изменения в БД" Click="Action_4_Click" />
+                <Button Name="BtnExportCSV" Width="100" Margin="0,0,20,0" Height ="30" Content="Экспорт в .CSV" Click="BtnExportCSV_Click" />
+                <Button Name="Action_3" Width="100" Margin="0,0,20,0" Height ="30" Content="Действие 3" />
+                <Button Name="BtnAddChanges" Width="100" Margin="0,0,20,0" Height ="30" Content="Внести изменения в БД" Click="Action_4_Click" />
             </StackPanel>
             <StackPanel Name="WorkBenchStack" Orientation="Vertical" Height="Auto" Visibility="Collapsed">
                 <StackPanel Orientation="Horizontal">
