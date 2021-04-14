@@ -211,7 +211,7 @@ namespace AStudent
                     List<string[]> ExpData;
                     //ExpData = Workingbench.Items;
                 }
-               
+                catch { throw; }
                 //int ColumnsCounter = Workingbench.Columns.Count();
                 //string ColumnsNames = "";
                 //DTable.Clear();
