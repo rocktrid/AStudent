@@ -133,11 +133,19 @@ namespace AStudent
         private void Action_4_Click(object sender, RoutedEventArgs e) //тип обновление update для БД
         {
             try
-            {
-                BaseConn.BuildConnection.Open();
-                adapter.Update(DTable);
-                System.Windows.MessageBox.Show("Successfull");
-                BaseConn.BuildConnection.Close();
+            { if (CmbChooseTable.SelectedItem != null)
+                {
+                    BaseConn.BuildConnection.Open();
+                    adapter.Update(DTable);
+                    System.Windows.MessageBox.Show("Successfull");
+                    BaseConn.BuildConnection.Close();
+                    TbForChng.Text = "Выберите таблицу для работы";
+
+                }
+                else
+                { 
+
+                }
             }
             catch (Exception ex)
             {
@@ -179,6 +187,7 @@ namespace AStudent
             }
             // перенос данных в datagrid
             Workingbench.ItemsSource = DT.DefaultView;
+            TbForChng.Text = "Выберите таблицу в которую отправить данные";
         }
 
         private void BtnExportCSV_Click(object sender, RoutedEventArgs e)

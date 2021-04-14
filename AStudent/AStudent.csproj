@@ -61,17 +61,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddDataIntoCurrentBase.xaml.cs">
-      <DependentUpon>AddDataIntoCurrentBase.xaml</DependentUpon>
-    </Compile>
     <Compile Include="BaseConn.cs" />
     <Compile Include="ReestrPg.xaml.cs">
       <DependentUpon>ReestrPg.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddDataIntoCurrentBase.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="LoginPg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

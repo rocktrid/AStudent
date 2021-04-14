@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ScrollViewer>
+        <ScrollViewer HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
         <Frame Name="ForFrames" NavigationUIVisibility="Hidden"/>
         </ScrollViewer>
     </Grid>
