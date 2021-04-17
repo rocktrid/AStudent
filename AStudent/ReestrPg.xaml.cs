@@ -143,7 +143,7 @@ namespace AStudent
 
                 }
                 else
-                { 
+                {
 
                 }
             }
@@ -189,7 +189,49 @@ namespace AStudent
             Workingbench.ItemsSource = DT.DefaultView;
             TbForChng.Text = "Выберите таблицу в которую отправить данные";
         }
+        private string WriteToCSV(DataTable dataTable)
+        {
+            string output = "";
+            try
+            {
+                string lastColumnName = dataTable.Columns[dataTable.Columns.Count - 1].ColumnName; //проверка на последнюю строку, чтобы добавить не ;, а пустую строку
 
+                foreach (DataColumn column in dataTable.Columns) // заголовки с таблицы
+                {
+                    if (lastColumnName != column.ColumnName)
+                    {
+                        output += (column.ColumnName.ToString() + ";");
+                    }
+                    else
+                    {
+                        output += (column.ColumnName.ToString() + "\n");
+                    }
+                }
+                foreach (System.Data.DataRow row in dataTable.Rows) // сами данные с таблицы
+                {
+                    foreach (DataColumn column in dataTable.Columns)
+                    {
+                        if (lastColumnName != column.ColumnName)
+                        {
+                            output += (row[column].ToString() + ";");
+                        }
+                        else
+                        {
+                            output += (row[column].ToString() + "\n");
+                        }
+                    }
+                }
+                return output;
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Ошибка во время конвертации: " + ex);
+                System.Windows.MessageBox.Show("Данные не были записаны в документ");
+
+                return output;
+            }
+        }
         private void BtnExportCSV_Click(object sender, RoutedEventArgs e)
         {
             string CheckName = "";
@@ -208,42 +250,27 @@ namespace AStudent
                     try
                     {
                         File.Delete(CheckName);
-                        
+
                     }
                     catch (Exception ex)
                     {
                         System.Windows.MessageBox.Show("Ошибка: " + ex.Message);
                     }
                 }
+                DataTable DTable = new DataTable();
+                DTable = ((DataView)Workingbench.ItemsSource).ToTable();
+                string result = WriteToCSV(DTable);
                 try
                 {
-                    List<string[]> ExpData;
-                    //ExpData = Workingbench.Items;
+                    File.AppendAllText(savepath, result, UnicodeEncoding.UTF8);
+                    System.Windows.MessageBox.Show("Данные были успешно записаны");
                 }
-                catch { throw; }
-                //int ColumnsCounter = Workingbench.Columns.Count();
-                //string ColumnsNames = "";
-                //DTable.Clear();
-                //DTable = ((DataView)Workingbench.ItemsSource).ToTable();
-                //string[] output = new string[(Convert.ToInt32(DTable.Rows))];
-                //for (int i = 0; i < ColumnsCounter; i++)
-                //{
-                //    ColumnsNames += DTable.Columns[i].ColumnName.ToString() + ";";
-                //}
-                //output[0] += ColumnsNames;
-                //for (int i = 1; (i - 1) < Convert.ToInt32(DTable.Rows); i++)
-                //{
-                //    for (int j = 0; j < ColumnsCounter; j++)
-                //    {
-                //        output[i] += DTable.Rows[i - 1].
-                //    }
-                //}
-                //Add the Header row for CSV file.
-
-                //здесь csv файл 
-
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show("Ошибка: " + ex);
+                }
             }
+
         }
-    }
-}
+    } }
 
